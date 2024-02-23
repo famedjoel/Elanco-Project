@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated-SDD Page</title>
+    <link rel="stylesheet" href="application.css">
+</head>
+
+<body>
+    <h1>Integrated-SDD Details</h1>
+    <ul></ul>
+
+    <script>
+        async function fetchData(url) {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        }
+
+        async function renderData(url) {
+            const listE1 = document.querySelector('ul');
+            const data = await fetchData(url);
+
+            data.forEach(post => {
+                const tagsHTML = Object.entries(post.Tags).map(([key, value]) => `<strong>${key}:</strong> ${value}`).join(', ');
+
+                const listItemHTML = `<li>
+                    <strong>Date:</strong> ${post.Date}, 
+                    <strong>InstanceId:</strong> ${post.InstanceId}, 
+                    <strong>MeterCategory:</strong> ${post.MeterCategory}, 
+                    <strong>ResourceGroup:</strong> ${post.ResourceGroup}, 
+                    <strong>ResourceLocation:</strong> ${post.ResourceLocation}, 
+                    <strong>ConsumedQuantity:</strong> ${post.ConsumedQuantity}, 
+                    <strong>Cost:</strong> ${post.Cost}, 
+                    <strong>UnitOfMeasure:</strong> ${post.UnitOfMeasure}, 
+                    <strong>Location:</strong> ${post.Location}, 
+                    <strong>ServiceName:</strong> ${post.ServiceName}, 
+                    <strong>Tags:</strong> ${tagsHTML}
+                </li>`;
+                listE1.insertAdjacentHTML('beforeend', listItemHTML);
+            });
+        }
+
+        // URL for the specific application JSON data
+        const jsonDataUrl = "https://engineering-task.elancoapps.com/api/applications/Integrated-SDD"; // Replace with the actual URL
+
+        // Render data for the specific application
+        renderData(jsonDataUrl);
+    </script>
+</body>
+
+</html>

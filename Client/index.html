@@ -189,7 +189,7 @@
         </header>
     
         <nav>
-            <a href="#">Contact</a>
+            <a href="#">Tools</a>
             <a href="#">About</a>
         </nav>
  
@@ -274,18 +274,23 @@
 
 
         async function renderResources() {
-            try {
-                const data = await fetchResourceData();
-                const resourceList = document.querySelector('#resource-list ul');
-                data.forEach(resource => {
-                    const markup = `<li>${resource}</li>`;
-                    resourceList.insertAdjacentHTML('beforeend', markup);
-                });
-                document.getElementById('resource-list').classList.add('loaded');
-            } catch (error) {
-                console.error('Error rendering resources:', error);
-            }
-        }
+    try {
+        const data = await fetchResourceData();
+        const resourceList = document.querySelector('#resource-list ul');
+        data.forEach(resource => {
+            const markup = `<li onclick="navigateToPage('${resource}')">${resource}</li>`;
+            resourceList.insertAdjacentHTML('beforeend', markup);
+        });
+        document.getElementById('resource-list').classList.add('loaded');
+    } catch (error) {
+        console.error('Error rendering resources:', error);
+    }
+}
+
+function navigateToResource(resource) {
+    // Replace 'resource_page.html' with the actual HTML page corresponding to the resource
+    window.location.href = resource.toLowerCase() + '.html';
+}
 
 
 
