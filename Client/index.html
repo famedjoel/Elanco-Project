@@ -1,0 +1,298 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get and display JSON data</title>
+</head>
+<body>
+
+    <h1>Users:</h1>
+    <ul>
+
+    </ul>
+    
+    <script>
+ fetch('https://engineering-task.elancoapps.com/api/applications')
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        console.log(data); // Log the data to inspect its structure
+        data.forEach(user => {
+            const markup = `<li>${user}</li>`;
+            document.querySelector('ul').insertAdjacentHTML('beforeend', markup);
+        });
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+    </script>
+    
+
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Elanco Apps Dashboard</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fa;
+                color: #343a40;
+                position: relative;
+            }
+    
+            header {
+                background-color: #007BFF;
+                color: #fff;
+                text-align: center;
+                padding: 20px;
+                font-size: 28px;
+            }
+
+            #logo-id {
+                background-color: white;
+                color: #fff;
+                text-align: center;
+                padding: 20px;
+                font-size: 28px;
+            }
+
+
+            #logo {
+    max-width: 80px; /* Adjust the maximum width as needed */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+    
+            nav {
+                background-color: #343a40;
+                padding: 10px;
+                text-align: center;
+            }
+    
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 0 15px;
+                font-size: 18px;
+            }
+
+            nav a:hover {
+                color: #007BFF;
+                border-radius: 5px;
+            }
+    
+            main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }    
+        section {
+            flex-grow: 0;
+            margin: 0 10px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Add any additional styles for responsiveness */
+
+        @media only screen and (max-width: 600px) {
+            /* Adjust styles for smaller screens if needed */
+        }
+    
+            #user-list {
+                background-color: #f8f9fa;
+            }
+    
+            #resource-list {
+                background-color: #fff;
+            }
+    
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+    
+            li {
+                padding: 20px;
+                border-bottom: 1px solid #eee;
+                transition: background-color 0.3s;
+                cursor: pointer;
+                font-size: 16px;
+            }
+    
+            li:hover {
+                background-color: black;
+                border-radius: 5px;
+            }
+    
+            button {
+                background-color: #007BFF;
+                color: #fff;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                /* spacing between each button list */
+                margin: 10px;
+            }
+    
+            ul.button-list li {
+    margin-bottom: 10px; /* Add space below each button */
+}
+
+
+
+            .loaded {
+                background-color: #e0f7fa;
+}
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+    
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+    
+            th {
+                background-color: #007BFF;
+                color: #fff;
+            }
+        </style>
+    </head>
+    
+    <body>
+    
+        <header id = logo-id>
+            <img src="Elanco.svg.png" alt="Elanco Apps Logo" id="logo">
+        </header>
+    
+        <nav>
+            <a href="#">Contact</a>
+            <a href="#">About</a>
+        </nav>
+ 
+     <main>
+        
+        <section id="user-list">
+            <header>
+                Applications
+            </header>
+            <button id="user">
+            <ul id="application-list">
+                <!-- Application names will be dynamically inserted here -->
+            </ul>
+        </button>
+        </section>
+
+        <section id="resource-list">
+            <header>
+                Resources
+            </header>
+            <button id="resource">
+            <ul id="resource-list-content">
+                <!-- Resource list will be dynamically inserted here -->
+            </ul>
+            </button>
+        </section>
+    </main>
+
+    <!-- <main>
+        <section>
+            <h2>Tool Output</h2>
+            <button onclick="inferTrends()">Infer Trends</button>
+            <table id="trendsTable">
+        
+            </table>
+        </section>
+    </main> -->
+
+    <script>
+
+
+        async function fetchUserData() {
+            try {
+                const response = await fetch('https://engineering-task.elancoapps.com/api/applications');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                throw error;
+            }
+        }
+
+        async function fetchResourceData() {
+            try {
+                const response = await fetch('https://engineering-task.elancoapps.com/api/resources');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching resource data:', error);
+                throw error;
+            }
+        }
+        async function renderUsers() {
+            try {
+                const data = await fetchUserData();
+                const userList = document.querySelector('#user-list ul');
+                data.forEach(application => {
+                    const markup = `<li onclick="navigateToPage('${application}')">${application}</li>`;
+                    userList.insertAdjacentHTML('beforeend', markup);
+                });
+                document.getElementById('user-list').classList.add('loaded');
+            } catch (error) {
+                console.error('Error rendering users:', error);
+            }
+        }
+
+        function navigateToPage(application) {
+            // Replace 'macao.html' with the actual HTML page corresponding to the application
+            window.location.href = application.toLowerCase() + '.html';
+        }
+
+
+
+        async function renderResources() {
+            try {
+                const data = await fetchResourceData();
+                const resourceList = document.querySelector('#resource-list ul');
+                data.forEach(resource => {
+                    const markup = `<li>${resource}</li>`;
+                    resourceList.insertAdjacentHTML('beforeend', markup);
+                });
+                document.getElementById('resource-list').classList.add('loaded');
+            } catch (error) {
+                console.error('Error rendering resources:', error);
+            }
+        }
+
+
+
+        renderUsers();
+        renderResources();
+
+    </script>
+ </body>
+ </html>
+ 
