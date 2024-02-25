@@ -35,6 +35,11 @@ To use the Elanco App, follow these steps:
 2. Explore the displayed data.
 3. Use the trend analysis tool to visualize data trends.
 
+## Acknowledgments
+
+- Elanco logo sourced from [Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/e/ef/Elanco.svg).
+
+
 ## Contact Information
 
 - **Joel Lucky**
