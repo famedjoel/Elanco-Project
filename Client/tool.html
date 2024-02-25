@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Import Google Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Import Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="tool.css">
+</head>
+
+<body>
+
+    <div id="navbar">
+        <h1>Tools Dashboard</h1>
+        <ul>
+            <li><a href="#" onclick="showHome()"><i class="material-icons">home</i>Home</a></li>
+            <li><a href="#" onclick="showCharts()"><i class="material-icons">show_chart</i>Charts</a></li>
+            <li><a href="#" onclick="showAbout()"><i class="material-icons">info</i>About</a></li>
+        </ul>
+    </div>
+
+    <div id="subNavbar" style="display: none;">
+        <ul>
+            <li><a href="#" onclick="showResources()">Resources</a></li>
+            <li><a href="#" onclick="showApplications()">Applications</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div id="homeContent">
+            <h2>Unlock Cost Analysis and Trends</h2>
+            <p>Discover powerful insights into your resource consumption and costs with our advanced analytics. The Tools Dashboard allows you to analyze data based on either <strong>Resource Group</strong> or <strong>Application Name</strong>.</p>
+            <p>Each data point represents a snapshot of consumption, cost, and other relevant details on a specific date. Dive into the details of your virtual resources, understand usage patterns, and optimize costs effectively.</p>
+            <p>Ready to explore? Navigate to the <strong>Charts</strong> section using the menu above and choose between analyzing by <strong>Resource Group</strong> or <strong>Service Name</strong>. Visualize trends over time for your selected option and make informed decisions to enhance efficiency and optimize resources.</p>
+            <p>Empower your financial planning with the comprehensive cost analysis provided by Tools Dashboard!</p>
+            <button id="exploreButton" onclick="showCharts()">Explore Cost Trends</button>
+        </div>
+        
+
+        <div id="chartsContent" style="display: none;">
+            <!-- Content for the Charts option -->
+            <div id="lineChartsContainer"></div>
+
+        
+        </div>
+
+        <div id="aboutContent" style="display: none;">
+            <h1>About Us</h1>
+            <p>Welcome to Tools Dashboard, your go-to platform for insightful data visualization and analysis. We strive to provide a user-friendly experience that empowers you to make informed decisions based on your data.</p>
+            <p>Our mission is to simplify the process of understanding and optimizing resource consumption and costs. Whether you're managing virtual resources in the cloud, tracking application performance, or analyzing financial metrics, Tools Dashboard is here to help.</p>
+            <p>Key Features:</p>
+            <ul>
+                <li>Interactive Charts: Visualize trends and patterns effortlessly with our interactive and customizable charts.</li>
+                <li>Cost Analysis: Gain a comprehensive understanding of your resource costs and make data-driven financial decisions.</li>
+                <li>User-Friendly Interface: Navigate seamlessly through our user-friendly interface designed for efficiency and ease of use.</li>
+            </ul>
+            <p>Ready to get started? Explore the charts and unlock a world of possibilities in data analysis.</p>
+            <p>Feel free to <a href="mailto:joelluck890@gmail.com">contact us</a> if you have any questions or suggestions. We're always here to enhance your experience!</p>
+        </div>
+
+    </div>
+
+
+    <script src="tool.mjs"></script>
+    
+</body>
+
+</html>
