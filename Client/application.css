@@ -6,15 +6,15 @@ ul {
 li {
     border: 1px solid #ccc;
     margin: 10px 0;
-    padding: 15px; /* Increase padding for better spacing */
-    border-radius: 10px; /* Increase border-radius for a more rounded look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increase box-shadow for a subtle lift effect */
-    background-color: #fff; /* Add a background color */
+    padding: 15px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
 }
 
 strong {
     margin-right: 5px;
-    color: #333; /* Optionally change the color of strong elements */
+    color: #333; 
 }
 
 h1 {
@@ -22,7 +22,6 @@ h1 {
     color: rgb(61, 118, 164);
     font-size: 3em;
     text-transform: uppercase;
-    /* letter-spacing: 0.5px; */
     margin-top: 50px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
