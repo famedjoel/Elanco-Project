@@ -142,3 +142,11 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+#topHomeIcon {
+    font-size: 36px; 
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    cursor: pointer;
+}
